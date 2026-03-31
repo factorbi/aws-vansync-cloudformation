@@ -61,7 +61,7 @@ If you want to use another region, just select it after the template initiates o
 * **Environment:** Text string to be included in the database cluster hostname.
 * **PublicSubnetACIDR:** Leave default. Only modify the subnet address if multiple environments are needed, example: `10.20.10.0/24`
 * **PublicSubnetBCIDR:** Leave default. Only modify the subnet address if multiple environments are needed, example: `10.20.20.0/24`
-* **SubnetsAZ:** Select three availability zones to create the resources.
+* **SubnetsAZ:** Select two availability zones to create the resources.
 * **VPCCIDR:** Leave default. Only modify the address if multiple environment are needed, example: `10.20.0.0/16`
 * Click **Next**, orange button.
 
