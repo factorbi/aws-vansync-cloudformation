@@ -44,8 +44,8 @@ If you want to use another region, just select it after the template initiates o
 
 | AWS Region | Short name | |
 | -- | -- | -- |
-| US East (N. Virginia) | us-east-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/Vansync-cloudformation/Aurora-RDS-Vansync.template) |
-| US East (Ohio) | us-east-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/Vansync-cloudformation/Aurora-RDS-Vansync.template) |
+| US East (N. Virginia) | us-east-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/vansync-cloudformation/Aurora-RDS-Vansync.template) |
+| US East (Ohio) | us-east-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/vansync-cloudformation/Aurora-RDS-Vansync.template) |
 
 
 ### 2. Create Stack
