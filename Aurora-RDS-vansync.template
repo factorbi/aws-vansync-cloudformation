@@ -19,13 +19,11 @@
       "Type": "String"
     },
     "DBInstanceClass": {
-      "Default": "db.t3.medium",
+      "Default": "db.t4g.medium",
       "Type": "String",
-      "Description": "Database instance class, e.g. db.t3.medium",
+      "Description": "Database instance class, e.g. db.t4g.medium",
       "ConstraintDescription": "DB instance class not supported",
       "AllowedValues": [
-        "db.t3.medium",
-        "db.t3.large",
         "db.t4g.medium",
         "db.t4g.large"
       ]
@@ -37,8 +35,7 @@
       "AllowedValues": [
         "dev",
         "prod",
-        "test",
-        "demo"
+        "test"
       ],
       "ConstraintDescription": "Select the environment to deploy"
     },

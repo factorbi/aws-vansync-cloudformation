@@ -1,22 +1,25 @@
-# Bipost
-Bipost is a simple database synchronization tool for continually moving data from on-premises to AWS Aurora MySQL and back forward.
-Created to keep your Windows databases on-premises while providing a way to extract, load & transform specific sets of data to AWS Aurora.
+# Vansync
+Vansync is a database synchronization tool for continually moving data from on-premises to AWS Aurora MySQL and back forward.
+Created to keep your legacy databases on-premises while providing a simple way to extract, load & transform specific sets of data to AWS Aurora.
 
 **Sources:**
 
-* [Microsoft SQL Server®](http://www.microsoft.com/en-us/sql-server)
-* [Firebird SQL](https://firebirdsql.org/)
-* [DBF dBase III](http://www.independent-software.com/dbase-dbf-dbt-file-format.html)
+* Firebird SQL
+* dBase (DBF)
+* Visual FoxPro (VFP)
+* Sybase (SAP SQL Anywhere)
+* Microsoft SQL Server (MSSQL)
+* MySQL
 
 **Destination:**
 
-* [Amazon Aurora MySQL](https://aws.amazon.com/rds/aurora/details/mysql-details/)
+* Amazon Aurora MySQL
 
-![Synchronize to AWS](img/BipostSyncDiagram2_med.png)
+![Synchronize to AWS](img/Vansync_ETL_for_legacy_on-prem_databases.jpg)
 
-# Link your AWS Account to Bipost API
+# Link your AWS Account to Vansync API
 
-This CloudFormation template will link your AWS Account to Bipost API.
+This CloudFormation template will link your AWS Account to Vansync API.
 *A CloudFormation template is an automated script to create and configure AWS resources.*
 
 These instructions assume that you already have:
@@ -26,10 +29,10 @@ These instructions assume that you already have:
 
 If you are not sure about these requirements please visit the [documentation page.](https://factorbi.github.io/)
 
-## Run the script
+## Provision the AWS services
 
 ### Before you start
-1. Have at hand your **bucket name.** It must look like this: `bipostdata-123456789012`
+1. Have at hand your **bucket name.** It must look like this: `vansync-123456789012`
 2. Log in to your AWS account.
 
 **IMPORTANT NOTICE: If you are planning to use the following AWS resources for production you may want to follow your company policies and understand how to use AWS security according to your needs.**
@@ -37,60 +40,42 @@ If you are not sure about these requirements please visit the [documentation pag
 ### 1. Launch the Stack
 
 Select the closest region to your location and click **Launch Stack.**
+If you want to use another region, just select it after the template initiates on your browser.
 
 | AWS Region | Short name | |
 | -- | -- | -- |
-| US East (N. Virginia) | us-east-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| US East (Ohio) | us-east-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| US West (California) | us-west-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| US West (Oregon) | us-west-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Canada (Central) | ca-central-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ca-central-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Europe (Ireland) | eu-west-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Europe (London) | eu-west-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Europe (Frankfurt) | eu-central-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Europe (Paris) | eu-west-3 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=eu-west-3#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Asia Pacific (Mumbai) | ap-south-1 |  [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-south-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Asia Pacific (Seoul) | ap-northeast-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Asia Pacific (Singapore) | ap-southeast-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Asia Pacific (Sydney) | ap-southeast-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-southeast-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| Asia Pacific (Tokyo) | ap-northeast-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
-| South America (São Paulo) | sa-east-1 |  [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=sa-east-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/bipost-cloudformation/Aurora-RDS-bipost.template) |
+| US East (N. Virginia) | us-east-1 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/Vansync-cloudformation/Aurora-RDS-Vansync.template) |
+| US East (Ohio) | us-east-2 | [![cloudformation-launch-button](img/launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/new?stackName=Production&templateURL=https://s3.amazonaws.com/Vansync-cloudformation/Aurora-RDS-Vansync.template) |
 
-### 2. Select Template
 
-* The template must be already selected, click **Next** lower-right blue button.
+### 2. Create Stack
 
-![Select Template](img/create-stack-step1.png)
+* The Amazon S3 URL template must be already selected, click **Next** lower-right orange button.
 
-### 3. Specify Details
+### 3. Specify stack details
 * **Stack Name:** this will be the prefix of all provisioned services.  Example: `mycompany-prod`
-* **BucketName:** Paste the S3 bucket name that your received from Factor BI over email. It must look like this: `bipostdata-123456789012`
+* **BucketName:** Paste the S3 bucket name that your received from Factor BI over email. It must look like this: `vansyncdata-123456789012`
 * **DBAdminPassword:** Type a complex password. Must be at least 8 characters containing uppercase and lowercase letters, numbers and symbols. Password must be at least eight characters long. Can be any printable ASCII character except "/", """, or "@".**
 * **DBAdminUsername:** Database Admin Username, example: root
-* **DBInstanceClass:** for testing purposes select the smallest available, currently db.t2.small.
-* **Environment:** Text to be included in the database cluster name.
+* **DBInstanceClass:** for testing purposes select the smallest available, currently db.t4g.medium.
+* **Environment:** Text string to be included in the database cluster hostname.
 * **PublicSubnetACIDR:** Leave default. Only modify the subnet address if multiple environments are needed, example: `10.20.10.0/24`
 * **PublicSubnetBCIDR:** Leave default. Only modify the subnet address if multiple environments are needed, example: `10.20.20.0/24`
-* **SubnetsAZ:** Select two availability zones to create the resources.
+* **SubnetsAZ:** Select three availability zones to create the resources.
 * **VPCCIDR:** Leave default. Only modify the address if multiple environment are needed, example: `10.20.0.0/16`
-* Click **Next**, blue button blue button.
+* Click **Next**, orange button.
 
-![Specify Details](img/create-stack-step2.png)
-
-### 4. Options
+### 4. Configure stack options
 * Leave all defaults, many in blank.
-* Click **Next**, blue button blue button (lower-right).
-
-### 5. Review
-
+* Scroll down to Capabilities.
 * Check "I acknowledge that AWS CloudFormation might create IAM resources with custom names".
+* Click **Next**, orange button.
 
-![Capabilities](img/capabilities.png?raw=true)
+### 5. Review and create
 
-* Click **Create** blue button. This will redirect to CloudFormation console home.
-* Click refresh icon, upper right corner.
-
-![CloudFormation Console Home](img/cloudFormation-console-home-1.png)
+* Scroll down, review all details.
+* Click **Submit** orange button. 
+* CloudFormation will start to deploy the services.
 
 ### 6. Resources created
 
@@ -98,9 +83,6 @@ Select the closest region to your location and click **Launch Stack.**
 * Review **Events** tab while Status is CREATE_IN_PROGRESS.
 * Once Status is CREATE_COMPLETE review **Outputs** tab.
 * You may want to copy and save on a secure place all Outputs, as you will use them for further configuration.
-
-![Stack details](img/stack-details.png)
-
 
 ## License
 
