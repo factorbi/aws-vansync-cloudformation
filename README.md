@@ -54,7 +54,7 @@ If you want to use another region, just select it after the template initiates o
 
 ### 3. Specify stack details
 * **Stack Name:** this will be the prefix of all provisioned services.  Example: `mycompany-prod`
-* **BucketName:** Paste the S3 bucket name that your received from Factor BI over email. It must look like this: `vansyncdata-123456789012`
+* **BucketName:** Paste the S3 bucket name that your received from Factor BI over email. It must look like this: `vansync-123456789012`
 * **DBAdminPassword:** Type a complex password. Must be at least 8 characters containing uppercase and lowercase letters, numbers and symbols. Password must be at least eight characters long. Can be any printable ASCII character except "/", """, or "@".**
 * **DBAdminUsername:** Database Admin Username, example: root
 * **DBInstanceClass:** for testing purposes select the smallest available, currently db.t4g.medium.
