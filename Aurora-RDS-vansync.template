@@ -48,9 +48,8 @@
     "SubnetsAZ": {
       "Description": "********** PLEASE SELECT TWO ZONES *********",
       "Type": "List<AWS::EC2::AvailabilityZone::Name>",
-      "AllowedPattern" : ".+",
-      "ConstraintDescription" : "Please select two zones"
-
+      "AllowedPattern": ".+",
+      "ConstraintDescription": "Please select two zones"
     },
     "PublicSubnetACIDR": {
       "Description": "Public Subnet A CIDR",
@@ -334,7 +333,6 @@
             "IpProtocol": "tcp",
             "FromPort": "0",
             "ToPort": "65535"
-
           }
         ],
         "SecurityGroupIngress": [
@@ -418,14 +416,13 @@
                   "Effect": "Allow",
                   "Action": "lambda:InvokeFunction",
                   "Resource": [
-                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-getOutData-160",
                     "arn:aws:lambda:us-east-1:951464950892:function:vansync-ocelotl-getoutdata-dev",
-                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-ocelotl-getoutdata-300",
-                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-ocelotl-getoutdata-300-x2",
-                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-move-queue-300",
-                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-move-queue-300-x2",
+                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-ocelotl-getoutdata-301",
+                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-ocelotl-getoutdata-301-x2",
+                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-move-queue-301",
+                    "arn:aws:lambda:us-east-1:951464950892:function:vansync-move-queue-301-x2",
                     "arn:aws:lambda:us-east-1:951464950892:function:storeJsonToBiMasterApiLogs"
-                    ]
+                  ]
                 }
               ]
             }
@@ -466,8 +463,18 @@
         "Description": "Vansync Aurora Database Cluster Parameter Group",
         "Family": "aurora-mysql8.0",
         "Parameters": {
-          "aws_default_s3_role": {"Fn::GetAtt" : [ "DBRole" , "Arn"] },
-          "aws_default_lambda_role": {"Fn::GetAtt" : [ "DBRole" , "Arn"] },
+          "aws_default_s3_role": {
+            "Fn::GetAtt": [
+              "DBRole",
+              "Arn"
+            ]
+          },
+          "aws_default_lambda_role": {
+            "Fn::GetAtt": [
+              "DBRole",
+              "Arn"
+            ]
+          },
           "max_allowed_packet": "1073741824",
           "max_connections": "16000",
           "max_user_connections": "4294967295",
@@ -639,9 +646,11 @@
       }
     },
     "AccessKey": {
-      "Type" : "AWS::IAM::AccessKey",
-      "Properties" : {
-        "UserName" : { "Ref" : "IAMUser" }
+      "Type": "AWS::IAM::AccessKey",
+      "Properties": {
+        "UserName": {
+          "Ref": "IAMUser"
+        }
       }
     }
   },
@@ -682,7 +691,10 @@
     "Secret": {
       "Description": "Secret Key",
       "Value": {
-        "Fn::GetAtt" : [ "AccessKey", "SecretAccessKey" ]
+        "Fn::GetAtt": [
+          "AccessKey",
+          "SecretAccessKey"
+        ]
       }
     }
   }
